@@ -22,6 +22,8 @@ suppressPackageStartupMessages({
 
 set.seed(123)
 
+data_dir <- "/set/your/path"
+setwd(data_dir)
 #----------------------------#
 # 1. Load combined object
 #----------------------------#
