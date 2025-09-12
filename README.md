@@ -34,10 +34,9 @@ The workflow itself is dataset-agnostic and can be applied to other studies.
 
 ---
 <img width="354" height="356" alt="image" src="https://github.com/user-attachments/assets/a90d19b5-7843-447d-bf8a-333649b0315f" />          
-<img width="224" height="227" alt="image" src="https://github.com/user-attachments/assets/bd3356f8-9f39-4766-a999-4d0faedb6d1a" />
-<img width="223" height="220" alt="image" src="https://github.com/user-attachments/assets/6a8d6cd3-a9b6-43e6-acb5-22b2f78f1d1c" />
-<img width="343" height="343" alt="image" src="https://github.com/user-attachments/assets/5f1f2968-1bac-46c2-a67b-44ee50075911" />
-<img width="519" height="512" alt="image" src="https://github.com/user-attachments/assets/a4064da2-f028-4ecb-bd19-c3fa28025efd" />
+<img width="354" height="356" alt="image" src="https://github.com/user-attachments/assets/69ea6dcc-e3da-4728-bc11-ffb5668cab90" />
+<img width="354" height="356" alt="image" src="https://github.com/user-attachments/assets/5f1f2968-1bac-46c2-a67b-44ee50075911" />
+<img width="354" height="356" alt="image" src="https://github.com/user-attachments/assets/a4064da2-f028-4ecb-bd19-c3fa28025efd" />
 
 ## Requirements
 
