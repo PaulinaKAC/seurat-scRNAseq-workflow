@@ -138,6 +138,15 @@ DimPlot(aki_combined,
         cols = c("goldenrod", "black"))
 dev.off()
 
+# ---------------------------------------------------------------------------
+# NOTE:
+# After doublet detection and classification,
+# filter the object to keep only the singlet cells and
+# repeat the standard preprocessing steps
+# (NormalizeData → FindVariableFeatures → ScaleData → PCA/UMAP, etc.)
+# on this singlet-only object before proceeding with downstream analyses.
+# ---------------------------------------------------------------------------
+
 ###############################################################################
 # End of script
 ###############################################################################
