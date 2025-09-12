@@ -1,14 +1,15 @@
 
 # Large data / results
-*.rds
-*.h5Seurat
-*.h5
-output/
-plots/
-results/
+*.rds          # any RDS files
+*.h5Seurat     # Seurat HDF5 files
+*.h5           # any generic .h5 file
+output/        # the whole output folder (all levels)
+plots/         # the whole plots folder
+results/       # the whole results folder
 
 # Output tables
-*.csv
-*.tsv
+*.csv          # all CSV files everywhere
+*.tsv          # all TSV files everywhere
+
 
 
