@@ -21,6 +21,8 @@ The workflow itself is dataset-agnostic and can be applied to other studies.
 
 4. **Dimensionality reduction & clustering**
    - PCA, UMAP, and graph-based clustering across multiple resolutions.
+     
+<img width="224" height="227" alt="image" src="https://github.com/user-attachments/assets/bd3356f8-9f39-4766-a999-4d0faedb6d1a" />
 
 5. **Batch correction**
    - Integration with **Harmony** to remove dataset/chemistry effects.
@@ -56,5 +58,15 @@ If you use this code or parts of the workflow, please cite:
 * **DoubletFinder** – McGinnis CS, et al. *DoubletFinder: Doublet detection in single-cell RNA sequencing data.* Cell Syst. 2019.  
   [https://doi.org/10.1016/j.cels.2019.03.003](https://doi.org/10.1016/j.cels.2019.03.003)
 
+* **Dataset GSE131685** – Liao J, et al. *Single-cell RNA sequencing of human kidney.* Sci Data. 2020.  
+  [https://doi.org/10.1038/s41597-019-0351-8](https://doi.org/10.1038/s41597-019-0351-8)
 
+* **Dataset GSE174220** – [NCBI GEO entry](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE174220)  
+  *(Add full paper citation when available).*
+
+* **Dataset GSE210622** – [NCBI GEO entry](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE210622)  
+  *(Add full paper citation when available).*
+
+* **KPMP single-cell / single-nucleus data** – Kidney Precision Medicine Project Consortium. *A multi-scale kidney atlas enables comprehensive understanding of kidney disease.* Cell. 2022.  
+  [https://doi.org/10.1016/j.cell.2022.03.024](https://doi.org/10.1016/j.cell.2022.03.024)
 
