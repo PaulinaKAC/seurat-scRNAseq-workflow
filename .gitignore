@@ -1,0 +1,14 @@
+
+# Large data / results
+*.rds
+*.h5Seurat
+*.h5
+output/
+plots/
+results/
+
+# Output tables
+*.csv
+*.tsv
+
+
