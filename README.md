@@ -56,5 +56,5 @@ If you use this code or parts of the workflow, please cite:
 * **DoubletFinder** – McGinnis CS, et al. *DoubletFinder: Doublet detection in single-cell RNA sequencing data.* Cell Syst. 2019.  
   [https://doi.org/10.1016/j.cels.2019.03.003](https://doi.org/10.1016/j.cels.2019.03.003)
 
-(And any dataset papers you rely on, e.g., GSE131685, GSE174220, GSE210622, KPMP Atlas.)
+
 
