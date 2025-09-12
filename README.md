@@ -85,10 +85,10 @@ If you use this code or parts of the workflow, please cite:
   [https://doi.org/10.1038/s41597-019-0351-8](https://doi.org/10.1038/s41597-019-0351-8)
 
 * **Dataset GSE174220** – [NCBI GEO entry](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE174220)  
-  *(Add full paper citation when available).*
+  *Tang R, Jin P, Shen C, Lin W, Yu L, Hu X, Meng T, Zhang L, Peng L, Xiao X, Eggenhuizen P, Ooi JD, Wu X, Ding X, Zhong Y. Single-cell RNA sequencing reveals the transcriptomic landscape of kidneys in patients with ischemic acute kidney injury. Chin Med J (Engl). 2023 May 20;136(10):1177-1187. doi: 10.1097/CM9.0000000000002679. Epub 2023 Apr 20. PMID: 37083129; PMCID: PMC10278705.*
 
 * **Dataset GSE210622** – [NCBI GEO entry](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE210622)  
-  *(Add full paper citation when available).*
+  *Hinze, C., Kocks, C., Leiz, J. et al. Single-cell transcriptomics reveals common epithelial response patterns in human acute kidney injury. Genome Med 14, 103 (2022). https://doi.org/10.1186/s13073-022-01108-9*
 
 * **KPMP single-cell / single-nucleus data** – Kidney Precision Medicine Project Consortium. *A multi-scale kidney atlas enables comprehensive understanding of kidney disease.* Cell. 2022.  
   [https://doi.org/10.1016/j.cell.2022.03.024](https://doi.org/10.1016/j.cell.2022.03.024)
