@@ -58,13 +58,10 @@ KPMP_sn   <- LoadH5Seurat(kpmp_sn_file)
 #----------------------------#
 # Metadata                   #
 #----------------------------#
-# Add consistent column names across datasets
-# Example:
 GSE131685$orig.ident <- GSE131685$Sample1
 GSE131685$group      <- GSE131685$Sample2
 GSE131685$Sample1    <- NULL
 GSE131685$Sample2    <- NULL
-# Repeat similarly for other datasets (GSE174220, GSE210622, KPMP_sc, KPMP_sn)
 
 #Dataset
 GSE131685 <- AddMetaData(GSE131685, metadata = "GSE131685", col.name = "Dataset")
