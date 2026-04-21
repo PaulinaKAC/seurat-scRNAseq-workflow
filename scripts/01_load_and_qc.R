@@ -9,9 +9,7 @@
 #   • RDS or h5Seurat files for each dataset 
 # Outputs:
 #   • Combined Seurat object after initial QC, saved as RDS
-#
-# Author: Your Name
-# Date:   YYYY-MM-DD
+
 ###############################################################################
 
 #----------------------------#
@@ -37,13 +35,11 @@ suppressPackageStartupMessages({
 set.seed(123)
 
 #----------------------------#
-# File paths (EDIT AS NEEDED)#
+# File paths                 #
 #----------------------------#
 data_dir <- "/set/your/path"
 setwd(data_dir)
 
-# Provide the full paths to your raw data files here.
-# Uncomment and adjust to match your environment.
 gse131685_file <- "/path/to/GSE131685_combined.rds"
 gse174220_file <- "/path/to/GSE174220_combined.rds"
 gse210622_file <- "/path/to/GSE210622_combined.rds"
@@ -53,7 +49,6 @@ kpmp_sn_file   <- "/path/to/KPMP_singlenucleus.h5Seurat"
 #----------------------------#
 # Load datasets              #
 #----------------------------#
-# Example (uncomment when paths are correct):
 GSE131685 <- readRDS(gse131685_file)
 GSE174220 <- readRDS(gse174220_file)
 GSE210622 <- readRDS(gse210622_file)
@@ -61,7 +56,7 @@ KPMP_sc   <- LoadH5Seurat(kpmp_sc_file)
 KPMP_sn   <- LoadH5Seurat(kpmp_sn_file)
 
 #----------------------------#
-# Standardize metadata       #
+# Metadata                   #
 #----------------------------#
 # Add consistent column names across datasets
 # Example:
@@ -86,7 +81,7 @@ GSE131685 <- AddMetaData(GSE131685, metadata = "sc", col.name = "sc.sn")
 GSE210622 <- AddMetaData(GSE210622, metadata = "sc", col.name = "sc.sn")
 
 #----------------------------#
-# Merge all datasets         #
+# Merge datasets             #
 #----------------------------#
 aki_combined <- merge(
   GSE131685,
@@ -105,9 +100,7 @@ saveRDS(aki_combined, file.path(data_dir, "aki_combined_master.rds"))
 ###############################################################################
 # QC Violin Plots
 #
-# Generates violin plots of nFeature_RNA, and nCount_RNA,
-# grouped by key metadata columns.  Adjust the `group_columns` vector
-# to match the metadata present in your Seurat object.
+# Generates violin plots of nFeature_RNA, and nCount_RNA,grouped by key metadata. 
 ###############################################################################
 
 pdf(file = "plots_QCmetric_VlnPlot_by_orig.ident_preQC.pdf", width=10, height=15)
@@ -133,7 +126,7 @@ dev.off()
 #----------------------------#
 # Quality Control            #
 #----------------------------#
-# Add mitochondrial percentage
+# Mitochondrial percentage
 aki_combined[["percent.mt"]] <- PercentageFeatureSet(aki_combined, pattern = "^MT")
 
 # Filter out low-quality cells:
@@ -154,7 +147,7 @@ saveRDS(aki_combined_qc, file.path(data_dir, "aki_combined_qc.rds"))
 # QC Violin Plots – After Filtering
 #
 # Generates violin plots of nFeature_RNA, nCount_RNA, and percent.mt
-# for the QC-filtered Seurat object, grouped by key metadata columns.
+# for the QC-filtered Seurat object, grouped by key metadata.
 ###############################################################################
 
 pdf(file = "plots_QCmetric_VlnPlot_by_orig.ident_postQC.pdf", width=10, height=15)
