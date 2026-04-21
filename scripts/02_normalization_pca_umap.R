@@ -10,9 +10,6 @@
 # Output:
 #   • Normalized/clustered Seurat object (RDS)
 #   • PCA/UMAP and QC plots (PDF)
-#
-# Author: Paulina Kaczorowska
-# Date:   2025-09-12
 ###############################################################################
 suppressPackageStartupMessages({
   library(Seurat)
