@@ -17,20 +17,13 @@ suppressPackageStartupMessages({
 
 singlets <- readRDS("/your/path/and/file/name.rds")
 
-
-#----------------------------#
-# 2. Re-run essential preprocessing on singlets
-#    (normalization, feature selection, scaling, PCA, UMAP, clustering) as in step 1 and 2.
-#    Adjust parameters as appropriate for your data.
-#----------------------------#
-
 #----------------------------#
 singlets <- NormalizeData(singlets)
 singlets <- FindVariableFeatures(singlets, nfeatures = 3000)
 singlets <- ScaleData(singlets)
 singlets <- RunPCA(singlets, features = VariableFeatures(singlets))
 singlets <- FindNeighbors(singlets, dims = 1:30)
-singlets <- FindClusters(singlets, resolution = 0.5)   # choose your resolution
+singlets <- FindClusters(singlets, resolution = 0.5)
 singlets <- RunUMAP(singlets, dims = 1:30)
 
 #----------------------------#
@@ -46,11 +39,10 @@ singlets <- IntegrateLayers(
   verbose        = FALSE
 )
 
-# Run UMAP and clustering on Harmony embeddings
 singlets <- RunUMAP(singlets, reduction = "harmony", dims = 1:15,
                     reduction.name = "umap.harmony")
 singlets <- FindNeighbors(singlets, reduction = "harmony", dims = 1:15)
-singlets <- FindClusters(singlets, resolution = 0.5)  # adjust resolution as needed
+singlets <- FindClusters(singlets, resolution = 0.5)
 
 markers_mast <- FindAllMarkers(
   singlets,
@@ -60,7 +52,6 @@ markers_mast <- FindAllMarkers(
   logfc.threshold = 0.2    # minimum log-fold change   
 )
 
-# Tidy the result and save
 markers_mast <- markers_mast %>% group_by(cluster)
 fwrite(markers_mast,
        file = "markers_singlets_harmony_MAST.csv")
