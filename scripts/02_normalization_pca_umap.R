@@ -6,7 +6,7 @@
 #   perform PCA/UMAP dimensional reduction, and clustering.
 #
 # Input:
-#   A Seurat object saved as an .rds file (from previous step)
+#   A Seurat object saved as an .rds file
 # Output:
 #   • Normalized/clustered Seurat object (RDS)
 #   • PCA/UMAP and QC plots (PDF)
@@ -42,12 +42,9 @@ aki_combined <- NormalizeData(aki_combined, normalization.method = "LogNormalize
 #----------------------------#
 
 aki_combined <- FindVariableFeatures(aki_combined, selection.method = "vst", nfeatures = 3000)
-
-#Identify the 10 most highly variable genes
 top10 <- head(VariableFeatures(aki_combined), 10)
 top10
 
-# plot variable features with and without labels
 pdf(file = "plots_VariableFeaturePlot.pdf", width=10, height=5)
 plot1 <- VariableFeaturePlot(aki_combined)
 plot2 <- LabelPoints(plot = plot1, points = top10, repel = TRUE)
@@ -61,8 +58,7 @@ dev.off()
 all.genes <- rownames(aki_combined)    
 aki_combined <- ScaleData(aki_combined, features = all.genes) # very time consuming
 
-# Save intermediate object if desired
-# saveRDS(obj, "combined_postscaling.rds")
+saveRDS(obj, "combined_postscaling.rds")
 
 #----------------------------#
 # 5. PCA
@@ -102,10 +98,6 @@ pdf(file = "plots_aki_combined_ElbowPlot.pdf", width=5, height=5)
 ElbowPlot(aki_combined)
 dev.off()
 
-#----------------------------#
-# 6. Graph-based clustering
-#----------------------------#
-
 aki_combined <- FindNeighbors(aki_combined, reduction = "pca", dims = 1:50)
 
 
@@ -131,7 +123,7 @@ for (res in resolutions) {
     reduction = "umap.unintegrated",
     label = TRUE,
     pt.size = 0.1
-  ) + ggtitle(paste("UMAP – Clustering Resolution", res))
+  ) + ggtitle(paste("UMAP - Clustering Resolution", res))
   dev.off()
 }
 
