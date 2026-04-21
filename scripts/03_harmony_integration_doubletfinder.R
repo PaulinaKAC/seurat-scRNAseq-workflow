@@ -14,9 +14,7 @@
 #   • UMAP plots for each clustering resolution
 #   • Table of cluster counts by resolution
 #   • DoubletFinder classifications and plots
-#
-# Author: Paulina Kaczorowska
-# Date:   2025-09-12
+
 ###############################################################################
 
 suppressPackageStartupMessages({
@@ -46,7 +44,6 @@ aki_combined <- IntegrateLayers(
   verbose        = FALSE
 )
 
-# UMAP/Neighbors/Clusters on Harmony space
 aki_combined <- aki_combined %>%
   RunUMAP(reduction = "harmony", dims = 1:15) %>%
   FindNeighbors(reduction = "harmony", dims = 1:15) %>%
@@ -59,7 +56,6 @@ aki_combined <- aki_combined %>%
 #----------------------------#
 resolutions <- seq(0.1, 2.0, by = 0.1)
 
-# Table of cluster counts at each resolution
 clusters_by_res <- sapply(resolutions, function(r) {
   col <- paste0("RNA_snn_res.", r)
   if (!col %in% colnames(aki_combined@meta.data)) {
@@ -73,7 +69,7 @@ write.table(clusters_by_res,
             "clusters_byresolution_after_harmony.txt",
             sep = "\t", quote = FALSE, col.names = NA)
 
-# UMAP plots for each resolution, using the Harmony-based embedding
+# UMAP plots for each resolution, using the Harmony embedding
 for (r in resolutions) {
   col <- paste0("RNA_snn_res.", r)
   Idents(aki_combined) <- aki_combined[[col, drop = TRUE]]
@@ -90,15 +86,14 @@ for (r in resolutions) {
 #----------------------------#
 # 4. DoubletFinder
 #----------------------------#
-options(future.globals.maxSize = 3e9) # Increase memory limit if needed, very memory consuming
+options(future.globals.maxSize = 3e9) 
 
-# Parameter sweep to estimate optimal pK
+# Parameter sweep to estimate optimal pK (neighborhood size parameter used in artificial nearest-neighbor doublet detection)
+#It controls how local/global the neighborhood comparison is.
+#too small → unstable, noisy
+#too large → oversmoothed
 sweep.res <- paramSweep(aki_combined, PCs = 1:15, sct = FALSE, num.cores = 32)
 sweep.stats <- summarizeSweep(sweep.res, GT = FALSE)
-
-pdf("plots_DoubletFinder_paramSweep.pdf", width = 5, height = 5)
-bcmvn <- find.pK(sweep.stats)
-dev.off()
 
 # Choose pK that maximizes the BCmetric
 pK <- as.numeric(as.vector(bcmvn$pK[which.max(bcmvn$BCmetric)]))
@@ -106,11 +101,10 @@ message("Optimal pK: ", pK)
 
 # Estimate expected number of doublets
 annotations   <- aki_combined$RNA_snn_res.0.5   # Choose the optimal resolution 
-homotypic.prop <- modelHomotypic(annotations)
-nExp_poi      <- round(homotypic.prop * ncol(aki_combined))
-nExp_poi.adj  <- round(nExp_poi * (1 - homotypic.prop))
+homotypic.prop <- modelHomotypic(annotations)   # homotypic doublet = two cells of the same type
+nExp_poi <- round(0.05 * ncol(aki_combined))    # nExp_poi =  How many doublets do I expect in my data?
+nExp_poi.adj  <- round(nExp_poi * (1 - homotypic.prop)) # nExp_poi.adj  =  How many detectable doublets do I expect?
 
-# Run DoubletFinder
 aki_combined <- doubletFinder(
   aki_combined,
   PCs       = 1:15,
@@ -128,7 +122,6 @@ table_data  <- table(aki_combined[[doublet_col]])
 write.table(table_data, "table_DoubletFinder_counts.txt",
             sep = "\t", quote = FALSE)
 
-# Plot UMAP with doublet labels
 Idents(aki_combined) <- aki_combined[[doublet_col, drop = TRUE]]
 pdf("plots_UMAP_DoubletFinder.pdf", width = 5, height = 5)
 DimPlot(aki_combined,
